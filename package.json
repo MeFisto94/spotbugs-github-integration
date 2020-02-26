@@ -1,0 +1,20 @@
+{
+  "name": "spotbugs-ci-runner",
+  "version": "1.0.0",
+  "description": "This utility will diff the SpotBugs results to be use on jMonkeyEngine's CI Repositories",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "MeFisto94",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.2",
+    "@actions/github": "^2.1.1",
+    "child-process-promise": "^2.2.1",
+    "glob": "^7.1.6",
+    "glob-promise": "^3.4.0",
+    "js-yaml": "^3.13.1",
+    "xml2js": "^0.4.23"
+  }
+}
