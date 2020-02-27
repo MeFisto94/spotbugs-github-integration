@@ -1,0 +1,35 @@
+# This is the default configuration file for the spotbugs ci plugin.
+# Most projects should work fine with these settings.
+
+# The Path to the spotbugs report, relative to the module
+# (subfolder of the working directory)
+resultPath: build/reports/spotbugs/main.xml
+
+# This is the path from this codes directory into your root build directory.
+# It is basically the opposite path that is used to invoke this script
+relativePath: ../
+
+# This is the path from the module to the actual source files and
+# as such required to to correctly link the bugs to the changes in the UI
+relativeModulePath: /src/main/java/
+
+checks:
+    summary:
+        header: Click [here](https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html) for a description of the otherwise cryptic error messages!
+    report:
+        title: SpotBugs Differential Report
+        pending: We're analysing your work currently, it better be good!
+        new_bug: A new potential bug 🐛 has been introduced here!
+    task:
+        title: SpotBugs Static Analysis Task
+
+# In almost all cases, these defaults should be good enough.
+# For non gradle builds, you can change this to invoke SpotBugs directly,
+# though.
+gradle_wrapper:
+    classpath: gradle/wrapper/gradle-wrapper.jar
+    mainClass: org.gradle.wrapper.GradleWrapperMain
+    # xml-reports is a specific property at jMonkeyEngine, it allows
+    # us to have HTML reports as the default output format, but make
+    # CI generate XML reports so we can parse them easily.
+    commandLine: spotbugsMain -Pxml-reports=true --continue
