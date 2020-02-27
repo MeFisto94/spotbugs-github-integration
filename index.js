@@ -187,7 +187,7 @@ function createAnnotations() {
     }
 
     success = new_bugs.length > 0;
-    summary = settings.config.checks.summary.header
+    summary = settings.config.checks.summary.header + "\n";
     summary += "# New Bugs: " + new_bugs.length + "\n";
     new_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
     summary += "# Solved old Bugs: " + solved_bugs.length + "\n";
