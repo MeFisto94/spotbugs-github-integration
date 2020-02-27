@@ -15,11 +15,10 @@ const repositorySpotbugsPath = settings.repositorySpotbugsPath;
 
 
 let comparator = comparators.classAndSignatureComparator;
-let relativePath = "../../"; // @TODO: Pass externally.
 
 
 async function gradlew(task) {
-    return exec("cd " + relativePath + " && java -cp " +
+    return exec("cd " + settings.config.relativePath + " && java -cp " +
     settings.config.gradle_wrapper.classpath + " " +
     settings.config.gradle_wrapper.mainClass + " " + task)
 }
@@ -31,7 +30,7 @@ async function generateReportsAndAnalyse() {
 
     let reports = {};
 
-    const files = await glob(relativePath + '**/' + settings.config.resultPath);
+    const files = await glob(settings.config.relativePath + '**/' + settings.config.resultPath);
 
     await Promise.all(files.map(async file =>
         {
@@ -61,7 +60,7 @@ function format(obj) {
 async function loadOldReports() {
     let reports = {};
 
-    const files = await glob(relativePath + repositorySpotbugsPath + "/*.xml");
+    const files = await glob(settings.config.relativePath + repositorySpotbugsPath + "/*.xml");
 
     await Promise.all(files.map(async file =>
         {
