@@ -95,7 +95,8 @@ function createAnnotations() {
                 let line_end = 1;
                 if (line.$.start !== undefined) {
                     line_start = line.$.start;
-                } else if (line.$.end !== undefined) {
+                }
+                if (line.$.end !== undefined) {
                     line_end = line.$.end;
                 }
 
@@ -123,7 +124,8 @@ function createAnnotations() {
                 let line_end = 1;
                 if (line.$.start !== undefined) {
                     line_start = line.$.start;
-                } else if (line.$.end !== undefined) {
+                }
+                if (line.$.end !== undefined) {
                     line_end = line.$.end;
                 }
 
