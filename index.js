@@ -90,6 +90,7 @@ function createAnnotations() {
 
         if (src) {
             src.forEach(line => {
+                console.dir(line);
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
                     start_line: line.$.start,
@@ -109,6 +110,7 @@ function createAnnotations() {
         const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : undefined));
         if (src) {
             src.forEach(line => {
+                console.dir(line);
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
                     start_line: line.$.start,
