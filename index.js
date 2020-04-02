@@ -189,9 +189,10 @@ function createAnnotations() {
     success = new_bugs.length > 0;
     summary = settings.config.checks.summary.header + "\n";
     summary += "# New Bugs: " + new_bugs.length + "\n";
-    new_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
+    // Since we now have annotations, we don't need a big list of bugs as summary
+    //new_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
     summary += "# Solved old Bugs: " + solved_bugs.length + "\n";
-    solved_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
+    //solved_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
 
     err_too_long = "\n[...] and many more!";
 
@@ -212,10 +213,8 @@ function createAnnotations() {
             conclusion: success ? "success" : "failure",
             output: {
                 title: settings.config.checks.report.title,
-                // @TODO: We don't need this anymore when we have annotations
-                //(summary.length < 65535) ? summary : (summary.substring(0, 65535 - err_too_long.length) + err_too_long),
                 summary: "New Bugs: " + new_bugs.length + "\nFixed Bugs: " + solved_bugs.length,
-                text: summary,
+                text: (summary.length < 65535) ? summary : (summary.substring(0, 65535 - err_too_long.length) + err_too_long),
                 annotations: annotations
             }
         }).catch(err => console.error(err));
