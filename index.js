@@ -90,11 +90,19 @@ function createAnnotations() {
 
         if (src) {
             src.forEach(line => {
-                console.dir(line);
+                // In case the lines are undefined, assign them to the top of the class.
+                let line_start = 0;
+                let line_end = 0;
+                if (line.$.start !== undefined) {
+                    line_start = line.$.start;
+                } else if (line.$.end !== undefined) {
+                    line_end = line.$.end;
+                }
+
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
-                    start_line: line.$.start,
-                    end_line: line.$.end === undefined ? line.$.start : line.$.end, // When no end has been specified, assume it's a one-liner
+                    start_line: line_start,
+                    end_line: line_end,
                     annotation_level: bug.bug.priority == "1" ? "failure" : "warning",
                     message: settings.config.checks.report.new_bug + "\nCategory: " + bug.bug.$.category + "\nType: " + bug.bug.$.type
                 });
@@ -110,11 +118,19 @@ function createAnnotations() {
         const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : undefined));
         if (src) {
             src.forEach(line => {
-                console.dir(line);
+                // In case the lines are undefined, assign them to the top of the class.
+                let line_start = 0;
+                let line_end = 0;
+                if (line.$.start !== undefined) {
+                    line_start = line.$.start;
+                } else if (line.$.end !== undefined) {
+                    line_end = line.$.end;
+                }
+
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
-                    start_line: line.$.start,
-                    end_line: line.$.end === undefined ? line.$.start : line.$.end, // When no end has been specified, assume it's a one-liner
+                    start_line: line_start,
+                    end_line: line_end,
                     annotation_level: "notice",
                     message: "🎉 This bug has been solved! 🎊\nCategory: " + bug.bug.$.category + "\nType: [" + bug.bug.$.type + "](https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html)"
                 });
