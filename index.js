@@ -86,7 +86,7 @@ function createAnnotations() {
     const res = [];
 
     new_bugs.forEach(bug => {
-        const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : undefined));
+        const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : (bug.bug.Class ? bug.bug.Class[0].SourceLine : undefined)));
 
         if (src) {
             src.forEach(line => {
@@ -116,7 +116,7 @@ function createAnnotations() {
     });
 
     solved_bugs.forEach(bug => {
-        const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : undefined));
+        const src = bug.bug.SourceLine ? bug.bug.SourceLine : (bug.bug.Method ? bug.bug.Method[0].SourceLine : (bug.bug.Field ? bug.bug.Field[0].SourceLine : (bug.bug.Class ? bug.bug.Class[0].SourceLine : undefined)));
         if (src) {
             src.forEach(line => {
                 // In case the lines are undefined, assign them to the top of the class.
