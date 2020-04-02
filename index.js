@@ -210,10 +210,10 @@ function createAnnotations() {
 
     success = new_bugs.length > 0;
     summary = settings.config.checks.summary.header + "\n";
-    summary += "# New Bugs: " + new_bugs.length + "\n";
     // Since we now have annotations, we don't need a big list of bugs as summary
+    //summary += "# New Bugs: " + new_bugs.length + "\n";
     //new_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
-    summary += "# Solved old Bugs: " + solved_bugs.length + "\n";
+    //summary += "# Solved old Bugs: " + solved_bugs.length + "\n";
     //solved_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
     err_too_long = "\n[...] and many more!";
 
