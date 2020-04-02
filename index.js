@@ -91,8 +91,8 @@ function createAnnotations() {
         if (src) {
             src.forEach(line => {
                 // In case the lines are undefined, assign them to the top of the class.
-                let line_start = 0;
-                let line_end = 0;
+                let line_start = 1;
+                let line_end = 1;
                 if (line.$.start !== undefined) {
                     line_start = line.$.start;
                 } else if (line.$.end !== undefined) {
@@ -119,8 +119,8 @@ function createAnnotations() {
         if (src) {
             src.forEach(line => {
                 // In case the lines are undefined, assign them to the top of the class.
-                let line_start = 0;
-                let line_end = 0;
+                let line_start = 1;
+                let line_end = 1;
                 if (line.$.start !== undefined) {
                     line_start = line.$.start;
                 } else if (line.$.end !== undefined) {
