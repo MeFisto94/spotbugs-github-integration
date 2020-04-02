@@ -93,12 +93,13 @@ function createAnnotations() {
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
                     start_line: line.$.start,
-                    end_line: line.$.end,
+                    end_line: line.$.end === undefined ? line.$.start : line.$.end, // When no end has been specified, assume it's a one-liner
                     annotation_level: bug.bug.priority == "1" ? "failure" : "warning",
                     message: settings.config.checks.report.new_bug + "\nCategory: " + bug.bug.$.category + "\nType: " + bug.bug.$.type
                 });
             });
         } else {
+            // Github requires it's Annotations to have a line, the alternative would be to use line number 0
             console.error("Warning: Found a bug without a SourceLine Attribute!!");
             console.dir(bug.bug);
         }
@@ -111,12 +112,13 @@ function createAnnotations() {
                 res.push({
                     path: bug.module + settings.config.relativeModulePath + line.$.sourcepath,
                     start_line: line.$.start,
-                    end_line: line.$.end,
+                    end_line: line.$.end === undefined ? line.$.start : line.$.end, // When no end has been specified, assume it's a one-liner
                     annotation_level: "notice",
                     message: "🎉 This bug has been solved! 🎊\nCategory: " + bug.bug.$.category + "\nType: [" + bug.bug.$.type + "](https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html)"
                 });
             });
         } else {
+            // Github requires it's Annotations to have a line, the alternative would be to use line number 0
             console.error("Warning: Found a bug without a SourceLine Attribute!!");
             console.dir(bug.bug);
         }
@@ -154,7 +156,7 @@ function createAnnotations() {
             value.forEach(error => {
                 if (!reports_old[key].some(oldError => comparator(error, oldError))) {
                     //console.error("Warning: Found new bug " + util.inspect(error, false, null));
-                    console.error("Warning: Found new bug " + format(error));
+                    //console.error("Warning: Found new bug " + format(error));
                     new_bugs.push({bug: error, module: key});
                 }
             });
@@ -193,7 +195,6 @@ function createAnnotations() {
     //new_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
     summary += "# Solved old Bugs: " + solved_bugs.length + "\n";
     //solved_bugs.forEach(bug => summary += ("- " + format(bug.bug) + "\n"));
-
     err_too_long = "\n[...] and many more!";
 
     const res = createAnnotations();
