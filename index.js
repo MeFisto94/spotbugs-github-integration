@@ -152,7 +152,7 @@ function createAnnotations() {
     const token = process.env.GITHUB_TOKEN;
     const octokit = new github.GitHub(token);
     
-    console.log("owner/repo: " + github.context.repo.owern + "/" + github.context.repo.repo);
+    console.log("owner/repo: " + github.context.repo.owner + "/" + github.context.repo.repo);
 
     check_run = await octokit.checks.create({
         owner: github.context.repo.owner,
