@@ -151,6 +151,8 @@ function createAnnotations() {
     settings.loadConfig();
     const token = process.env.GITHUB_TOKEN;
     const octokit = new github.GitHub(token);
+    
+    console.log("owner/repo: " + github.context.repo.owern + "/" + github.context.repo.repo);
 
     check_run = await octokit.checks.create({
         owner: github.context.repo.owner,
@@ -163,6 +165,8 @@ function createAnnotations() {
           summary: settings.config.checks.report.pending
         }
     });
+    
+    console.log("check_run: " + check_run);
 
     reports_new = await generateReportsAndAnalyse();
     reports_old = await loadOldReports();
