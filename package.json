@@ -9,7 +9,7 @@
   "author": "MeFisto94",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^2.1.1",
     "child-process-promise": "^2.2.1",
     "glob": "^7.1.6",
